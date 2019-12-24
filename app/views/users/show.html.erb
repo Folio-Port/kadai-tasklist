@@ -1,0 +1,5 @@
+<h3><%= @user.name %></h3>
+<img src="<%= gravatar_url(@user, { size: 500 }) %>" alt="">
+<a href="<%= user_path(@user) %>">Tasks <%= @count_tasks %></a>
+<%= render 'tasks/tasks', tasks: @tasks %>
+<%= render 'tasks/form' %>

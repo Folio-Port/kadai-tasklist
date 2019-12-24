@@ -1,0 +1,6 @@
+<% tasks.each do |task| %>
+  <img src="<%= gravatar_url(task.user, { size: 50 }) %>" alt="">
+  <%= link_to task.user.name, user_path(task.user)%>
+  <p><%= task.content %></p>
+<% end %>
+<%= paginate tasks %>
