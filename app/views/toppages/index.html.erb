@@ -1,6 +1,0 @@
-<% if logged_in? %>
-  <%= render 'tasks/tasks', tasks: @tasks %>
-<% else %>
-  <h1>Welcome to the Tasklists</h1>
-  <%= link_to 'Sign up now!', signup_path %>
-<% end %>

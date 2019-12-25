@@ -1,6 +1,7 @@
 class TasksController < ApplicationController
   before_action :require_user_logged_in
-  before_action :set_taskInfo, only: [:show, :edit, :update, :destroy]
+  before_action :set_task_info, only: [:show, :edit, :update, :destroy]
+  before_action :check_task_belonging, only: [:show, :edit, :update, :destroy]
 
   def index
     @tasks = current_user.tasks
@@ -47,8 +48,15 @@ class TasksController < ApplicationController
 
   private
 
-  def set_taskInfo
+  def set_task_info
     @task = Task.find(params[:id])
+  end
+
+  def check_task_belonging
+    unless @task.user_id == current_user.id
+      flash[:rejection] = 'タスクに関する権限がありません'
+      redirect_to tasks_url
+    end
   end
 
   #Strong Parameter
